@@ -96,7 +96,7 @@ def trip_1(start):
 
 @app.route("/api/v1.0/<start>/<end>")
 def trip_2(start,end):
-# When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date.
+# When given the start and the end date, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive.
     start = dt.date(2016, 8, 24) - dt.timedelta(days=365)
     end =  dt.date(2016, 9, 7) - dt.timedelta(days=365)
     trip_data = session.query(func.min(Measurement.tobs), func.round(func.avg(Measurement.tobs), 1), func.max(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
